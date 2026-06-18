@@ -1,0 +1,15 @@
+# Account Risk & Opportunity Digest — Context Doc
+
+## The Problem
+
+In most CS and support organizations, identifying which accounts need attention this week requires a manager or CSM to manually cross-reference multiple systems: a CRM for account details, a support tool for ticket volume and escalations, and a product analytics platform for usage and adoption trends. By the time a pattern becomes visible through that process, the window to act is often already closing. Renewal-week fire drills, late-stage churn saves, and missed expansion conversations are all symptoms of the same root cause: signal that existed in the data weeks earlier never surfaced to the right person at the right time.
+
+## What This Build Does
+
+This Zap runs on a weekly schedule and processes every account in the book automatically. For each account, it evaluates twelve signals spanning support activity, product usage, renewal timing, and account ownership, then passes all of that to an AI classification step built on AI by Zapier. The AI applies an explicit, ordered set of rules to classify each account as at-risk, expansion-opportunity, watch, or healthy, and returns a structured JSON object with a signal type, urgency level, a one-sentence reason citing the specific data points that triggered the classification, and a concrete suggested action for the account owner.
+
+At-risk accounts generate an immediate email alert to the owning CSM with the AI's reasoning and next step attached. Expansion-opportunity accounts generate a separate alert framed around growth rather than risk, because conflating the two either buries the upside under churn noise or makes risk alerts feel like sales pitches. Watch and healthy accounts land quietly in a weekly digest sheet that a manager can scan in two minutes. In a production environment both alert paths would route to dedicated Slack channels the team monitors in real time. Email is used here to make the output tangible for this walkthrough.
+
+## Why It's Built This Way
+
+The AI step is doing real decision-making work, not drafting a summary at the end of a chain. It applies explicit, ordered classification rules so the output is consistent across runs and auditable when a CSM asks why an account was flagged. The reason field answers that question directly, in plain language, citing the actual data points. Routing watch and healthy accounts to a digest rather than generating alerts is intentional: the goal is reducing noise and surfacing only what requires a human this week, not adding another feed nobody reads. The separation of at-risk and expansion-opportunity into distinct routing paths reflects how a real CS team should operate — churn risk and growth signal are different conversations that go to different people with different framing and different urgency. The data here is mocked to represent the fragmentation most CS orgs live with, with the Zap doing the cross-referencing a manager would otherwise have to do manually every Monday morning.
