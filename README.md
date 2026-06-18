@@ -4,7 +4,7 @@ AI Fluency exercise submission — Sr. Manager, Global Support role.
 
 ## Who this is for
 
-This repo documents a workflow built for the Zapier AI Fluency exercise. It reflects how I actually think about AI in a CS and support organization: not as a drafting tool bolted onto the end of a process, but as a synthesis and decision layer that reduces what has to route through a human.
+This repo documents a workflow built for the AI Fluency exercise. It reflects how I actually think about AI in a CS and support organization: not as a drafting tool bolted onto the end of a process, but as a synthesis and decision layer that reduces what has to route through a human.
 
 The data is fully mocked and structured to represent the kind of fragmentation most CS orgs deal with — account data, support activity, and product usage consolidated into a single source for this demo. In production, these signals pull from Salesforce, a support platform (Zendesk/Intercom), and a product analytics tool. The shape of the problem and the logic are drawn from work I'm doing in a real environment at Jobber.
 
